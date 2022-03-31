@@ -12,8 +12,7 @@ export class DataverseClient {
   private setDisplayMultiple = (names: string[], is: boolean) =>
     names.forEach((name) => this.setDisplay(name, is));
   private setDisplay = (name: string, is: boolean) => {
-    let control = this.formContext.getControl(name);
-    //@ts-ignore
+    let control: Xrm.Controls.StringControl = this.formContext.getControl(name);
     if (control) control.setVisible(is);
   };
 }

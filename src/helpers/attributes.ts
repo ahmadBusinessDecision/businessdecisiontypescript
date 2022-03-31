@@ -5,4 +5,6 @@ export class AttributesHelper {
       else attribute.setValue(value);
     }
   };
+  static setForTest = (val: string): string =>
+    val && val !== "" ? val : "Empty string";
 }

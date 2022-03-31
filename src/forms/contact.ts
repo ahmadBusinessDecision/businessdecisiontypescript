@@ -8,16 +8,17 @@ export class contactForm {
     debugger;
     let service: DataverseClient = new DataverseClient(formContext);
     service.hideMultiple(["jobtitle", "sdasdsadsadasdsa"]);
+    let jobtitle: Xrm.Controls.StringControl =
+      formContext.getControl("jobtitle");
+    jobtitle.setVisible(false);
     let formType = formContext.ui.getFormType();
     if (formType === XrmEnum.FormType.Update) {
-      let contacts = await ApiHelper.retrieveMultiple(
+      let contact = await ApiHelper.retrieve(
         "contact",
-        "firstname eq 'Ahmad'",
-        "lastname"
+        formContext.data.entity.getId(),
+        "firstname"
       );
-      contacts.forEach((contact) => {
-        alert(contact.lastname);
-      });
+      alert(contact.firstname);
     }
   };
 }
